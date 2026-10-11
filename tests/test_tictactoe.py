@@ -52,3 +52,40 @@ def test_render_shows_numbers_for_empty_squares():
     output = ttt.render(ttt.new_board())
     for number in range(1, 10):
         assert str(number) in output
+
+
+def test_outcome_messages_are_formatted(capsys):
+    from unittest.mock import patch
+
+    # Player wins
+    with patch("arcade.games.tictactoe.ask_int", side_effect=[1, 2, 3]):
+        with patch("arcade.games.tictactoe.computer_move", side_effect=[3, 4]):
+            board = ["X", "X", " ", " ", " ", " ", " ", " ", " "]
+            with patch("arcade.games.tictactoe.new_board", return_value=board):
+                score = ttt.play()
+                assert score == 100
+                out = capsys.readouterr().out
+                assert "You win!" in out
+
+
+def test_play_announces_a_draw_for_a_full_board(capsys):
+    from unittest.mock import patch
+
+    board = ["X", "O", "X", "X", "O", "O", "O", "X", " "]
+    with patch("arcade.games.tictactoe.new_board", return_value=board):
+        with patch("arcade.games.tictactoe.ask_int", return_value=9):
+            score = ttt.play()
+
+    assert score == 0
+    output = capsys.readouterr().out
+    assert "It's a draw!" in output
+    assert "None" not in output
+
+
+def test_outcome_message_for_a_draw_does_not_expose_none():
+    assert ttt.outcome_message(None) == "  It's a draw!\n"
+
+
+def test_outcome_message_identifies_the_winner():
+    assert ttt.outcome_message(ttt.PLAYER) == "  You win!\n"
+    assert ttt.outcome_message(ttt.COMPUTER) == "  Computer wins!\n"

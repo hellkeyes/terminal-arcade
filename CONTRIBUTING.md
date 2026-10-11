@@ -1,7 +1,6 @@
 # Contributing to Terminal Arcade
 
-Thanks for being here. This repository is part of **GITHUB Community GITAM** and
-is participating in **Hacktoberfest 2026**. Whether this is your first pull
+Thanks for being here. This repository is part of **GITHUB Community GITAM**. Whether this is your first pull
 request ever or your hundredth, the guide below is everything you need.
 
 **If this is your first time:** the single best place to start is
@@ -30,7 +29,7 @@ git clone https://github.com/YOUR-USERNAME/terminal-arcade.git
 cd terminal-arcade
 
 # 2. Point at the original repo so you can stay up to date
-git remote add upstream https://github.com/github-community-gitam/terminal-arcade.git
+git remote add upstream https://github.com/pushpam2404/terminal-arcade.git
 
 # 3. There is no step 3. There is nothing to install.
 
@@ -121,16 +120,29 @@ python3 -m pytest        # all tests must pass
 python3 -m arcade        # and play your change, actually play it
 ```
 
-If you have ruff installed (optional):
+If you have ruff installed (entirely optional):
 
 ```bash
 python3 -m pip install ruff
-ruff format .
-ruff check .
+ruff format .          # tidies spacing and quotes
+ruff check . --fix     # fixes what it safely can
 ```
 
-CI runs exactly these. Running them locally takes 10 seconds and saves a round
-trip.
+### What can actually fail your pull request
+
+Only two things:
+
+1. **A test fails** — something in `tests/` broke.
+2. **A real bug is found** — an undefined variable, an unused import, a mutable
+   default argument. The check names the file and the line.
+
+**Formatting never blocks you.** Untidy spacing, single quotes instead of
+double, imports in the wrong order, a missing newline at the end of a file —
+these show up as suggestions in the log and are then ignored. Your pull request
+merges either way.
+
+This is deliberate. A first contribution should not be rejected by a robot over
+four spaces of whitespace.
 
 ### 6. Open the pull request
 
@@ -150,7 +162,7 @@ faster than anything else you can do.
 
 A maintainer responds within **48 hours**:
 
-- **Approved and merged** — we add `hacktoberfest-accepted`. Done
+- **Approved and merged** — done
 - **Changes requested** — we leave comments pointing at exact lines. Push more
   commits to the same branch; the PR updates itself. This is normal and happens
   to experienced developers constantly. It is not criticism
@@ -165,7 +177,7 @@ apply to everyone equally.
 
 ### Automatically rejected
 
-Marked `invalid` / `spam` and excluded from Hacktoberfest:
+Marked `invalid` / `spam` and closed without review:
 
 - Whitespace, comma, or formatting-only changes to Markdown files
 - Adding your name or a link to the README without being asked to
@@ -186,7 +198,8 @@ Marked `invalid` / `spam` and excluded from Hacktoberfest:
 ### The 48-hour maintainer commitment
 
 We commit to acknowledging every PR within 48 hours. If yours has been sitting
-longer, ping us in Discord — you are not being annoying, we dropped the ball.
+longer, say so in a comment on the pull request — you are not being annoying,
+we dropped the ball.
 
 ---
 
@@ -207,7 +220,7 @@ longer, ping us in Discord — you are not being annoying, we dropped the ball.
 1. Re-read the issue — the answer is often in "How to verify locally"
 2. Read `arcade/games/guess.py`, the simplest game in the project
 3. Comment on the issue and tag the mentor listed on it
-4. Ask in Discord
+4. Say what you have already tried — that alone often surfaces the answer
 5. Come to a **PR Debug Clinic** (Oct 12, Oct 21) and we will sit with you
 
 Useful when Git misbehaves:
