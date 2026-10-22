@@ -2,6 +2,7 @@
 
 from arcade.games import scramble
 
+
 def test_is_solved_correct_guess():
     assert scramble.is_solved("apple", "apple")
 

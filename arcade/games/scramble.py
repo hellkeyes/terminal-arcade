@@ -4,8 +4,8 @@ Unscramble the word. A player get three attempts.
 """
 import random
 
-from arcade.games.hangman import WORDS
 from arcade import art
+from arcade.games.hangman import WORDS
 from arcade.input_utils import ask
 
 NAME = "Scramble"
@@ -83,7 +83,7 @@ def play() -> int:
             print(f"  You scored {points} points.\n")
             return points
         else:
-            print(f" Wrong Guess ")
+            print(" Wrong Guess ")
 
     print(art.red(f"\n Out of attempts. The word was {word}.\n"))
     return 0
